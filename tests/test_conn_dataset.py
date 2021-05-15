@@ -1,4 +1,4 @@
-from graph_conn.conn_dataset import FullAbideDataset, CorrToDGLDataset
+from graph_conn.conn_dataset import FullAbideDataset, CorrToDGLDataset, ListToDGLDataset
 from graph_conn.conn_dataset import GraphParams
 from graph_conn.conn_data_utils import dgl_graph_from_vec, create_test_corr
 import numpy as np
@@ -41,7 +41,7 @@ def test_list_to_dgl_dataset():
     graphs = []
     for i in range(N):
         sym = 0.3 * np.random.randn(graph_params.n_nodes, graph_params.n_nodes)
-        graphs.append(dgl_graph_from_vec(sym, graph_params, flatten=False))
+        graphs.append(dgl_graph_from_vec(sym, graph_params))
     labels = torch.LongTensor(np.random.choice([0, 1], size=N, p=[0.3, 0.7]))
     test_dataset = ListToDGLDataset(graphs, labels)
     graph, label = test_dataset[0]

@@ -18,7 +18,7 @@ def small_dataset():
     graphs = []
     for i in range(N):
         sym = 0.3 * np.random.randn(graph_params.n_nodes, graph_params.n_nodes)
-        graphs.append(dgl_graph_from_vec(sym, graph_params, flatten=False))
+        graphs.append(dgl_graph_from_vec(sym, graph_params))
     labels = torch.LongTensor(np.random.choice([0, 1], size=N, p=[0.3, 0.7]))
     small_dataset = ListToDGLDataset(graphs, labels)
     return small_dataset
